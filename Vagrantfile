@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
  
   config.vm.network "forwarded_port", guest: 8000, host: 8000
  
-  config.vm.provision "cmd", inline: <<-CMD
+  config.vm.provision "shell", inline: <<-SHELL
     systemctl disable apt-daily.service
     systemctl disable apt-daily.timer
     sudo apt-get update
@@ -27,5 +27,5 @@ Vagrant.configure("2") do |config|
       echo "# PYTHON_ALIAS_ADDED" >> /home/vagrant/.bash_aliases
       echo "alias python='python3'" >> /home/vagrant/.bash_aliases
     fi
-  CMD
+  SHELL
  end
